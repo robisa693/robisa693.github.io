@@ -138,11 +138,13 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
   margin-bottom: 26px;
 }
 .status-dot {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-  box-shadow: 0 0 0 0 var(--accent-soft); animation: pulse 2.6s infinite;
+  --dot: var(--accent);
+  width: 8px; height: 8px; border-radius: 50%; background: var(--dot);
+  animation: pulse 2.6s infinite;
 }
+.status-dot.busy { --dot: #d98a2b; }  /* amber — busy but reachable */
 @keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--dot) 45%, transparent); }
   70%  { box-shadow: 0 0 0 9px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
