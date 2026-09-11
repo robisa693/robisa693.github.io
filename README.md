@@ -5,7 +5,7 @@ independent Platform Engineering & IT consultancy of Roberto Isaac.
 
 Built as a plain static site (HTML/CSS/JS — no build step) so it deploys directly on **GitHub Pages**.
 
-Contact: **Roberto@RIConsulting.se**
+Contact: **contact@RIConsulting.se**
 
 ## Structure
 
