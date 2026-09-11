@@ -308,6 +308,9 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
   text-align: center; padding: 40px 28px; margin-top: 48px;
   border-top: 1px solid var(--border); color: var(--text-faint); font-size: 0.86rem;
 }
+.footer p { margin: 0; }
+.footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-legal { margin-top: 8px; font-size: 0.8rem; opacity: 0.85; }
 
 /* ===========================================================
    Reveal on scroll (subtle, staggered)
