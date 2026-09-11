@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roberto Isaac Consulting AB — Platform Engineering &amp; DevOps</title>
-  <meta name="description" content="Roberto Isaac Consulting AB (RIConsulting) — independent Platform Engineering & IT consultancy by Roberto Isaac. DevOps, Infrastructure as Code, CI/CD, Kubernetes and platform architecture. Linköping, Sweden." />
+  <meta name="description" content="Roberto Isaac Consulting AB (Roberto Isaac Consulting / RIConsulting) — independent Platform Engineering & IT consultancy by Roberto Isaac. DevOps, Infrastructure as Code, CI/CD, Kubernetes and platform architecture. Linköping, Sweden." />
+  <meta name="author" content="Roberto Isaac" />
 
   <link rel="canonical" href="https://riconsulting.se/" />
 
@@ -25,31 +26,48 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Roberto Isaac Consulting AB",
-    "alternateName": "RIConsulting",
-    "url": "https://riconsulting.se",
-    "email": "Roberto@RIConsulting.se",
-    "description": "Independent Platform Engineering & IT consultancy — DevOps, Infrastructure as Code, CI/CD, Kubernetes and platform architecture.",
-    "areaServed": "SE",
-    "knowsAbout": ["Platform Engineering", "DevOps", "DevSecOps", "Infrastructure as Code", "Terraform", "CI/CD", "Kubernetes", "AWS", "OpenStack"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Linköping",
-      "addressCountry": "SE"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Roberto Isaac",
-      "jobTitle": "Platform Engineer & IT Consultant",
-      "sameAs": [
-        "https://www.linkedin.com/in/roberto-isaac-2215a817a",
-        "https://github.com/robisa693"
-      ]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/roberto-isaac-2215a817a",
-      "https://github.com/robisa693"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://riconsulting.se/#roberto",
+        "name": "Roberto Isaac",
+        "jobTitle": "Platform Engineer & IT Consultant",
+        "url": "https://riconsulting.se",
+        "worksFor": { "@id": "https://riconsulting.se/#org" },
+        "knowsAbout": ["Platform Engineering", "DevOps", "DevSecOps", "Infrastructure as Code", "Terraform", "CI/CD", "Kubernetes", "AWS", "OpenStack"],
+        "sameAs": [
+          "https://www.linkedin.com/in/roberto-isaac-2215a817a",
+          "https://github.com/robisa693"
+        ]
+      },
+      {
+        "@type": ["ProfessionalService", "Organization"],
+        "@id": "https://riconsulting.se/#org",
+        "name": "Roberto Isaac Consulting AB",
+        "alternateName": ["Roberto Isaac Consulting", "RIConsulting"],
+        "url": "https://riconsulting.se",
+        "email": "Roberto@RIConsulting.se",
+        "description": "Independent Platform Engineering & IT consultancy — DevOps, Infrastructure as Code, CI/CD, Kubernetes and platform architecture.",
+        "areaServed": "SE",
+        "founder": { "@id": "https://riconsulting.se/#roberto" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Linköping",
+          "addressCountry": "SE"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/roberto-isaac-2215a817a",
+          "https://github.com/robisa693"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://riconsulting.se/#website",
+        "name": "Roberto Isaac Consulting AB",
+        "alternateName": ["Roberto Isaac Consulting", "Roberto Isaac"],
+        "url": "https://riconsulting.se",
+        "publisher": { "@id": "https://riconsulting.se/#org" }
+      }
     ]
   }
   </script>
