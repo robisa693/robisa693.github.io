@@ -14,7 +14,7 @@ Contact: **contact@RIConsulting.se**
 ├── index.html        # the page
 ├── assets/
 │   ├── style.css     # all styling (dark + light theme)
-│   └── main.js       # theme toggle + current footer year
+│   └── main.js       # theme toggle + scroll reveal
 ├── .nojekyll         # tell Pages to serve files as-is
 └── README.md
 ```
