@@ -486,7 +486,6 @@ strong {
 
 .work-item-secondary {
   margin-top: 48px;
-  margin-left: 120px;
   border-top: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border);
 }
@@ -775,10 +774,6 @@ strong {
 
   .workflow {
     max-width: 680px;
-  }
-
-  .work-item-secondary {
-    margin-left: 0;
   }
 
   .experience-row > div {
