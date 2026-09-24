@@ -75,313 +75,239 @@
   </script>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <a href="#home" class="brand">RI<span class="dot">Consulting</span></a>
-    <nav class="nav-links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <svg class="sun" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm10 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM4 12a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.95 6.95a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.17 6.17a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zm12.02-1.41a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.17 17.83a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0z"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21.64 13a1 1 0 00-1.05-.14 8 8 0 01-9.45-9.45A1 1 0 0010 2a10 10 0 1012 12 1 1 0 00-.36-1z"/></svg>
-    </button>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav">
+      <a href="#home" class="brand" aria-label="RIConsulting, home">RI<span>Consulting</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+        <svg class="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0 2a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm0-18a1 1 0 011 1v1a1 1 0 11-2 0V2a1 1 0 011-1zm10 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM4 12a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zm14.95 6.95a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zM6.17 6.17a1 1 0 01-1.41 0l-.71-.71a1 1 0 011.41-1.41l.71.71a1 1 0 010 1.41zm12.02-1.41a1 1 0 010 1.41l-.71.71a1 1 0 11-1.41-1.41l.71-.71a1 1 0 011.41 0zM6.17 17.83a1 1 0 010 1.41l-.71.71a1 1 0 01-1.41-1.41l.71-.71a1 1 0 011.41 0z"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 00-1.05-.14 8 8 0 01-9.45-9.45A1 1 0 0010 2a10 10 0 1012 12 1 1 0 00-.36-1z"/></svg>
+      </button>
+    </div>
   </header>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-inner reveal">
-      <p class="eyebrow"><span class="status-dot busy"></span> Currently on assignment · open to new requests</p>
-      <h1 class="hero-title">Roberto Isaac</h1>
-      <p class="hero-sub">
-        <span class="accent">Platform Engineer</span> &amp; IT Consultant
-      </p>
-      <p class="hero-lead">
-        Independent consultancy — <strong>Roberto Isaac Consulting AB</strong> —
-        bringing seven years of platform engineering to teams that need
-        automated, self-service infrastructure. I specialise in DevSecOps,
-        Infrastructure as Code and CI/CD, from deep troubleshooting to
-        service architecture.
-      </p>
-      <div class="hero-cta">
-        <a href="#experience" class="btn btn-primary">See my work</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
-      </div>
-      <dl class="hero-meta">
-        <div><dt>Company</dt><dd>Roberto Isaac Consulting AB</dd></div>
-        <div><dt>Based in</dt><dd>Linköping, Sweden</dd></div>
-        <div><dt>Focus</dt><dd>Platform Engineering &amp; DevOps</dd></div>
-      </dl>
-    </div>
-    <div class="hero-terminal reveal" aria-hidden="true">
-      <div class="term-bar"><span></span><span></span><span></span><em>roberto@platform: ~</em></div>
-      <pre class="term-body"><span class="c-prompt">$</span> <span class="c-cmd">terraform apply -auto-approve</span>
-<span class="c-ok">✔</span> vault_secrets      <span class="c-dim">provisioned</span>
-<span class="c-ok">✔</span> packer_image       <span class="c-dim">built</span>
-<span class="c-ok">✔</span> ansible_playbook   <span class="c-dim">converged</span>
-<span class="c-ok">✔</span> ci_cd_pipeline     <span class="c-dim">deployed</span>
-
-<span class="c-hi">Apply complete!</span> <span class="c-dim">4 added, 0 changed, 0 destroyed.</span>
-<span class="c-prompt">$</span> <span class="c-cmd blink">_</span></pre>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="section-head reveal">
-      <span class="section-num">01</span>
-      <h2>About</h2>
-    </div>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p>
-          <strong>Roberto Isaac Consulting AB</strong> is my independent
-          consultancy. I'm a Platform Engineer and IT consultant with deep
-          expertise in <strong>DevOps</strong>,
-          <strong>Infrastructure as Code</strong> and platform building, backed by
-          seven years of hands-on engineering across some of Sweden's most
-          demanding technical environments.
+  <main id="main">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent platform engineering consultant</p>
+        <h1 id="hero-title">Roberto Isaac</h1>
+        <p class="hero-role"><span>Platform Engineer</span> <span class="role-tail">&amp; IT Consultant</span></p>
+        <p class="hero-lead">
+          I build and automate infrastructure for engineering teams. My work spans
+          platform engineering, CI/CD and service architecture, with consulting
+          experience at Saab and Ericsson.
         </p>
-        <p>
-          My career spans platform engineering at <strong>Saab</strong> and a
-          progression at <strong>Ericsson</strong> — from ICT engineer, through
-          DevOps and network-tooling roles, up to
-          <strong>Service Architect</strong> for the monitoring domain, where I
-          designed service architecture and led it through security audits. That
-          range means I can move fluently between low-level troubleshooting,
-          automation, and high-level architecture and stakeholder work.
-        </p>
-        <p>
-          I thrive in small, engaged teams focused on automated, self-service
-          platform services, and I'm driven by curiosity and a genuine interest
-          in continuously learning new technology — including implementing
-          agentic AI loops to accelerate development and raise code quality.
-        </p>
-        <ul class="about-facts">
-          <li><strong>Company</strong> Roberto Isaac Consulting AB</li>
-          <li><strong>Current role</strong> Platform Engineer @ Saab</li>
-          <li><strong>Based in</strong> Linköping, Sweden</li>
-          <li><strong>Languages</strong> Swedish · English · German</li>
-        </ul>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="#work" class="text-link">Selected work <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="availability">Currently on assignment, open to upcoming requests.</p>
+        <p class="hero-meta">Roberto Isaac Consulting AB <span aria-hidden="true">/</span> Linköping, Sweden</p>
       </div>
-      <div class="about-card">
-        <div class="stat"><span class="stat-num">7+</span><span class="stat-label">Years of experience</span></div>
-        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Senior engineering roles</span></div>
-        <div class="stat"><span class="stat-num">4</span><span class="stat-label">Industry certifications</span></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-    <div class="section-head reveal">
-      <span class="section-num">02</span>
-      <h2>Experience</h2>
-    </div>
-    <div class="timeline">
-      <article class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-head">
+      <figure class="workflow" aria-labelledby="workflow-title" aria-describedby="workflow-desc">
+        <div class="terminal-bar" aria-hidden="true">
+          <span class="terminal-controls"><i></i><i></i><i></i></span>
+          <span>roberto@platform: ~/workflow</span>
+        </div>
+        <figcaption>
+          <span class="workflow-kicker">Illustrative workflow</span>
+          <strong id="workflow-title">From definition to deployment</strong>
+          <span id="workflow-desc">A simplified example of how infrastructure work moves through four connected stages.</span>
+        </figcaption>
+        <ol class="workflow-steps">
+          <li><span class="step-num">01</span><strong>Define</strong><small>Terraform</small></li>
+          <li><span class="step-num">02</span><strong>Build</strong><small>Packer</small></li>
+          <li><span class="step-num">03</span><strong>Configure</strong><small>Ansible</small></li>
+          <li><span class="step-num">04</span><strong>Deploy</strong><small>CI/CD</small></li>
+        </ol>
+      </figure>
+    </section>
+
+    <section id="work" class="section" aria-labelledby="work-title">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 id="work-title">Selected work</h2>
+      </div>
+
+      <article class="work-item work-item-primary">
+        <div class="work-meta">
+          <p class="work-index">A / Current</p>
+          <p><strong>Saab</strong><br>Consultant<br>Linköping</p>
+          <p>Mar 2025<br>to present</p>
+        </div>
+        <div class="work-story">
+          <p class="work-type">Platform engineering</p>
+          <h3>Development environments</h3>
+          <p>
+            The work concerns ordering, configuring and deploying segregated
+            development environments. As a platform engineering consultant, I
+            develop the Infrastructure as Code and CI/CD flows behind that process
+            and work with security and infrastructure teams on system segmentation
+            and process modernization. The aim is a more automated, consistent way
+            for engineering teams to receive and use their environments, with the
+            delivery logic maintained as code rather than as a manual handover.
+          </p>
+          <ul class="tech-list" aria-label="Relevant technologies">
+            <li>Terraform</li><li>Packer</li><li>Ansible</li><li>CI/CD</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="work-item work-item-secondary">
+        <div class="work-meta">
+          <p class="work-index">B / Previous</p>
+          <p><strong>Ericsson</strong><br>Consultant<br>Linköping</p>
+          <p>2022–2024</p>
+        </div>
+        <div class="work-story">
+          <p class="work-type">Network operations</p>
+          <h3>Tooling for an isolated environment</h3>
+          <p>
+            A TAC+ service had to run on Docker Swarm in an isolated environment
+            without repository access. I worked on the network operations tooling
+            and built an automated GitLab CI/CD path that respected that constraint,
+            rather than assuming a conventional connected deployment. The project
+            combined container operations with practical delivery automation in an
+            environment where the deployment model had to account for restricted
+            access from the start.
+          </p>
+          <ul class="tech-list" aria-label="Relevant technologies">
+            <li>Docker Swarm</li><li>GitLab CI/CD</li><li>TAC+</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="experience" class="section" aria-labelledby="experience-title">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 id="experience-title">Experience</h2>
+      </div>
+      <div class="experience-list">
+        <article class="experience-row">
+          <p class="experience-date">Mar 2025<br>— Present</p>
+          <div>
             <h3>Platform Engineer</h3>
-            <span class="tl-date">Mar 2025 — Present</span>
+            <p class="experience-org">Saab (consultant) · Linköping</p>
+            <p>Developing IaC and CI/CD flows for segregated development environments with security and infrastructure teams.</p>
           </div>
-          <p class="tl-org">Saab (consultant) · Linköping</p>
-          <p>
-            Key person in modernizing the ordering, configuration and deployment
-            of segregated development environments through DevSecOps. Drive the
-            design and evolution of IaC and CI/CD flows, and lead process
-            modernization and system segmentation alongside security and
-            infrastructure teams. Implemented agentic AI loops to speed up
-            development and improve code quality.
-          </p>
-          <ul class="tags"><li>Terraform</li><li>Vault</li><li>Packer</li><li>Ansible</li><li>Docker</li><li>CI/CD</li><li>Nautobot</li><li>Agentic AI</li></ul>
-        </div>
-      </article>
-
-      <article class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-head">
+        </article>
+        <article class="experience-row">
+          <p class="experience-date">Jan 2024<br>— Mar 2025</p>
+          <div>
             <h3>Service Architect — Monitoring Domain</h3>
-            <span class="tl-date">Jan 2024 — Mar 2025</span>
+            <p class="experience-org">Ericsson (consultant) · Linköping</p>
+            <p>Designed and documented service architecture, led security audit work and managed stakeholder requirements.</p>
           </div>
-          <p class="tl-org">Ericsson (consultant) · Linköping</p>
-          <p>
-            Service architect for the monitoring domain within Ericsson Lab
-            Operations. Designed and documented the service architecture, led the
-            service through security audits, ensured successful progression
-            through project phases and managed incoming stakeholder requirements.
-          </p>
-          <ul class="tags"><li>Service Architecture</li><li>Security Audits</li><li>Prometheus</li><li>Grafana</li><li>GitOps</li><li>Stakeholder Mgmt</li></ul>
-        </div>
-      </article>
-
-      <article class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-head">
+        </article>
+        <article class="experience-row">
+          <p class="experience-date">Jul 2022<br>— Jan 2024</p>
+          <div>
             <h3>DevOps Engineer — Network Tools</h3>
-            <span class="tl-date">Jul 2022 — Jan 2024</span>
+            <p class="experience-org">Ericsson (consultant) · Linköping</p>
+            <p>Built network operations tooling, including BGP Flowspec DDoS protection, a multi-site gRPC collector and Ansible automation triggered through the AWX API.</p>
           </div>
-          <p class="tl-org">Ericsson (consultant) · Linköping</p>
-          <p>
-            Developed internal network operations tooling and was a key resource
-            for troubleshooting across many tech stacks. Selected projects:
-            <em>TAC+</em> (Docker Swarm in an isolated, repo-less environment with
-            automated GitLab CI/CD), <em>BGP Flowspec</em> DDoS protection that
-            greatly reduced firewall load during attacks, a multi-site
-            <em>gRPC collector</em>, and Ansible SSSD automation triggered via the
-            AWX API.
-          </p>
-          <ul class="tags"><li>Docker Swarm</li><li>gRPC</li><li>Ansible</li><li>GitLab CI/CD</li><li>DDoS Mitigation</li><li>Python</li></ul>
-        </div>
-      </article>
-
-      <article class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-head">
+        </article>
+        <article class="experience-row">
+          <p class="experience-date">Aug 2020<br>— Jun 2022</p>
+          <div>
             <h3>DevOps — Global Monitoring Team</h3>
-            <span class="tl-date">Aug 2020 — Jun 2022</span>
+            <p class="experience-org">Ericsson (consultant) · Linköping</p>
+            <p>Developed monitoring plugins, planned upgrades and built documented high-availability solutions across stakeholder environments.</p>
           </div>
-          <p class="tl-org">Ericsson (consultant) · Linköping</p>
-          <p>
-            Developed Nagios and CheckMK API-compliant plugins, planned and
-            executed upgrades with minimal downtime, and built/documented
-            high-availability solutions (PCS, Pacemaker, DRBD, GFS2) across
-            diverse stakeholder environments.
-          </p>
-          <ul class="tags"><li>OP5</li><li>CheckMK</li><li>High Availability</li><li>Python</li><li>Ansible</li><li>Linux</li></ul>
-        </div>
-      </article>
-
-      <article class="tl-item reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-head">
+        </article>
+        <article class="experience-row">
+          <p class="experience-date">May 2019<br>— Aug 2020</p>
+          <div>
             <h3>ICT Engineer — Lab IT</h3>
-            <span class="tl-date">May 2019 — Aug 2020</span>
+            <p class="experience-org">Ericsson (consultant) · Linköping</p>
+            <p>Moved from third-line support into API automation and data processing in an agile Linux environment.</p>
           </div>
-          <p class="tl-org">Ericsson (consultant) · Linköping</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 id="about-title">About</h2>
+      </div>
+      <div class="about-layout">
+        <div class="about-copy">
           <p>
-            Moved from third-line support toward automation in an agile, Linux
-            environment — automating via APIs and processing data. Projects
-            included Automatic Project Monitoring, Lab Ops Automation, Automatic
-            Hardware Alarms, CMDB DataQuality and Vulnerability Management ticket
-            automation.
+            I run Roberto Isaac Consulting AB and work across platform engineering,
+            DevOps and service architecture. My career started in third-line
+            troubleshooting and developed through API automation, monitoring and
+            network tooling into infrastructure platforms and architecture. That
+            progression helps me connect detailed technical work with security,
+            delivery processes and stakeholder needs.
           </p>
-          <ul class="tags"><li>Linux</li><li>Python</li><li>API Automation</li><li>Agile</li></ul>
+          <p>
+            I prefer small, engaged teams building automated, self-service platform
+            services. I work in Swedish and English, and also speak German. Today I
+            am based in Linköping and work as a Platform Engineer at Saab through my
+            consultancy.
+          </p>
         </div>
-      </article>
-    </div>
-  </section>
+        <dl class="about-facts">
+          <div><dt>Company</dt><dd>Roberto Isaac Consulting AB</dd></div>
+          <div><dt>Current</dt><dd>Platform Engineer at Saab</dd></div>
+          <div><dt>Based in</dt><dd>Linköping, Sweden</dd></div>
+          <div><dt>Languages</dt><dd>Swedish, English, German</dd></div>
+        </dl>
+      </div>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <div class="section-head reveal">
-      <span class="section-num">03</span>
-      <h2>Skills &amp; Tools</h2>
-    </div>
-    <div class="skills">
-      <div class="skill-col reveal">
-        <h4>Infrastructure &amp; IaC</h4>
-        <ul><li>Terraform</li><li>Ansible</li><li>Vault</li><li>Packer</li><li>Nautobot</li></ul>
+    <section id="skills" class="section reference-section" aria-labelledby="skills-title">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 id="skills-title">Tools</h2>
       </div>
-      <div class="skill-col reveal">
-        <h4>Platforms &amp; Cloud</h4>
-        <ul><li>AWS</li><li>OpenStack</li><li>Docker &amp; Docker Swarm</li><li>Kubernetes</li><li>Linux / RHEL</li><li>Windows Server</li></ul>
+      <div class="skills">
+        <div class="skill-group"><h3>Infrastructure &amp; IaC</h3><p>Terraform · Ansible · Vault · Packer · Nautobot</p></div>
+        <div class="skill-group"><h3>Platforms &amp; Cloud</h3><p>AWS · OpenStack · Docker &amp; Docker Swarm · Kubernetes · Linux / RHEL · Windows Server</p></div>
+        <div class="skill-group"><h3>CI/CD &amp; GitOps</h3><p>GitLab CI/CD · GitHub Actions · Git / GitOps · DevSecOps</p></div>
+        <div class="skill-group"><h3>Languages</h3><p>Python · Go · Bash · PowerShell</p></div>
+        <div class="skill-group"><h3>Observability</h3><p>Prometheus · Grafana · CheckMK · OP5 / Nagios</p></div>
+        <div class="skill-group"><h3>Networking &amp; More</h3><p>Cisco Routing &amp; Switching · REST / JSON APIs · Microservices · Jira / Confluence</p></div>
       </div>
-      <div class="skill-col reveal">
-        <h4>CI/CD &amp; GitOps</h4>
-        <ul><li>GitLab CI/CD</li><li>GitHub Actions</li><li>Git / GitOps</li><li>DevSecOps</li></ul>
-      </div>
-      <div class="skill-col reveal">
-        <h4>Languages</h4>
-        <ul><li>Python</li><li>Go</li><li>Bash</li><li>PowerShell</li></ul>
-      </div>
-      <div class="skill-col reveal">
-        <h4>Observability</h4>
-        <ul><li>Prometheus</li><li>Grafana</li><li>CheckMK</li><li>OP5 / Nagios</li></ul>
-      </div>
-      <div class="skill-col reveal">
-        <h4>Networking &amp; More</h4>
-        <ul><li>Cisco Routing &amp; Switching</li><li>REST / JSON APIs</li><li>Microservices</li><li>Jira / Confluence</li></ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CERTIFICATIONS -->
-  <section id="certs" class="section">
-    <div class="section-head reveal">
-      <span class="section-num">04</span>
-      <h2>Certifications</h2>
-    </div>
-    <div class="certs">
-      <div class="cert reveal">
-        <span class="cert-badge">HC</span>
-        <div>
-          <h4>Terraform Associate</h4>
-          <p>HashiCorp · 2025</p>
-        </div>
+    <section id="certs" class="section reference-section" aria-labelledby="certs-title">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 id="certs-title">Certifications</h2>
       </div>
-      <div class="cert reveal">
-        <span class="cert-badge">RH</span>
-        <div>
-          <h4>RHCSA</h4>
-          <p>Red Hat · 2022</p>
-        </div>
-      </div>
-      <div class="cert reveal">
-        <span class="cert-badge">CC</span>
-        <div>
-          <h4>CCNA Routing &amp; Switching</h4>
-          <p>Cisco Networking Academy · 2019</p>
-        </div>
-      </div>
-      <div class="cert reveal">
-        <span class="cert-badge">CC</span>
-        <div>
-          <h4>CCENT — Routing &amp; Switching</h4>
-          <p>Cornerstone Group · 2019</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <ul class="certs">
+        <li><div><h3>Terraform Associate</h3><p>HashiCorp</p></div><time datetime="2025">2025</time></li>
+        <li><div><h3>RHCSA</h3><p>Red Hat</p></div><time datetime="2022">2022</time></li>
+        <li><div><h3>CCNA Routing &amp; Switching</h3><p>Cisco Networking Academy</p></div><time datetime="2019">2019</time></li>
+        <li><div><h3>CCENT — Routing &amp; Switching</h3><p>Cornerstone Group</p></div><time datetime="2019">2019</time></li>
+      </ul>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section contact">
-    <div class="section-head center reveal">
-      <span class="section-num">05</span>
-      <h2>Let's work together</h2>
-    </div>
-    <p class="contact-lead reveal">
-      Roberto Isaac Consulting AB is currently on assignment, but always open to
-      hear about upcoming platform engineering, DevOps and architecture work. If
-      you have something on the horizon — or just want to talk infrastructure and
-      automation — my inbox is always open.
-    </p>
-    <div class="contact-grid">
-      <a href="mailto:contact@RIConsulting.se" class="contact-card reveal">
-        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
-        <strong>Email</strong>
-        <span>contact@RIConsulting.se</span>
-      </a>
-      <a href="https://www.linkedin.com/in/roberto-isaac-2215a817a" target="_blank" rel="noopener" class="contact-card reveal">
-        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4z"/></svg></span>
-        <strong>LinkedIn</strong>
-        <span>roberto-isaac</span>
-      </a>
-      <a href="https://github.com/robisa693" target="_blank" rel="noopener" class="contact-card reveal">
-        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg></span>
-        <strong>GitHub</strong>
-        <span>@robisa693</span>
-      </a>
-    </div>
-  </section>
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <div class="contact-copy">
+        <p class="section-num">06 / Contact</p>
+        <h2 id="contact-title">Start a conversation.</h2>
+        <p>Currently on assignment. Get in touch about upcoming platform engineering, DevOps or architecture work.</p>
+      </div>
+      <div class="contact-links">
+        <a class="email-link" href="mailto:contact@RIConsulting.se">contact@RIConsulting.se</a>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/roberto-isaac-2215a817a" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/robisa693" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <p>© <span id="year"></span> Roberto Isaac Consulting AB · Linköping, Sweden · <a href="mailto:contact@RIConsulting.se">contact@RIConsulting.se</a></p>
