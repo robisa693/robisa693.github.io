@@ -65,12 +65,17 @@
     ) * 0.6;
   }
 
-  var STEPS = 16;   // length of each streak (segments)
-  var SEG = 4;      // px per segment
-  var DRIFT = 1.1;  // how fast streaks travel
+  var STEPS = 16;    // length of each streak (segments)
+  var SEG = 4;       // px per segment
+  var DRIFT = 0.55;  // how fast streaks travel (halved)
+  var scrollVel = 0; // scroll-driven push, decays each frame
 
   function frame() {
     t += 0.0016;
+
+    // scroll gives the wind a vertical push that eases back to rest
+    var push = scrollVel * 0.01;
+    if (push > 1.6) push = 1.6; else if (push < -1.6) push = -1.6;
 
     // clear fully every frame — no residue, no clutter
     ctx.clearRect(0, 0, w, h);
@@ -85,9 +90,9 @@
       for (var k = 0; k < STEPS; k++) {
         var a = field(sx, sy);
         var nx = sx - (Math.cos(a) * 0.6 + 0.95) * SEG;
-        var ny = sy - Math.sin(a) * 0.9 * SEG;
+        var ny = sy - (Math.sin(a) * 0.9 + push) * SEG;
         var fade = 1 - k / STEPS;
-        ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (0.42 * fade) + ')';
+        ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (0.34 * fade) + ')';
         ctx.lineWidth = 1.1 * fade + 0.25;
         ctx.beginPath();
         ctx.moveTo(sx, sy);
@@ -96,10 +101,10 @@
         sx = nx; sy = ny;
       }
 
-      // advance the streak head along the flow (rightward drift)
+      // advance the streak head along the flow (rightward drift + scroll)
       var a0 = field(p.x, p.y);
       p.x += (Math.cos(a0) * 0.6 + 0.95) * DRIFT;
-      p.y += Math.sin(a0) * 0.9 * DRIFT;
+      p.y += (Math.sin(a0) * 0.9 + push) * DRIFT;
       p.age++;
 
       if (p.x > w + 90 || p.y < -90 || p.y > h + 90 || p.age > p.life) {
@@ -107,6 +112,7 @@
       }
     }
 
+    scrollVel *= 0.90; // ease back to calm
     raf = requestAnimationFrame(frame);
   }
 
@@ -123,6 +129,16 @@
     clearTimeout(rt);
     rt = setTimeout(resize, 200);
   });
+
+  // scroll stirs the wind
+  var lastScrollY = window.pageYOffset || 0;
+  window.addEventListener('scroll', function () {
+    var y = window.pageYOffset || 0;
+    scrollVel += (y - lastScrollY);
+    lastScrollY = y;
+    if (scrollVel > 600) scrollVel = 600;
+    else if (scrollVel < -600) scrollVel = -600;
+  }, { passive: true });
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) stop(); else start();
