@@ -200,10 +200,15 @@
     btns[i].addEventListener('click', function () { setMode(this.getAttribute('data-fx')); });
   }
 
+  var lastW = window.innerWidth;
   var rt;
   window.addEventListener('resize', function () {
     clearTimeout(rt);
     rt = setTimeout(function () {
+      // ignore height-only changes (mobile URL bar show/hide on scroll)
+      var nw = window.innerWidth;
+      if (Math.abs(nw - lastW) < 2) return;
+      lastW = nw;
       if (activeName === 'gas') active.size();
       else { size2d(); if (active.seed) active.seed(); }
     }, 200);
