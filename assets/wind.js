@@ -82,14 +82,14 @@
     function spawn() {
       return {
         x: Math.random() * W, y: Math.random() * H,
-        r: 55 + Math.random() * 95,
+        r: (0.07 + Math.random() * 0.10) * Math.min(W, H), // scales with screen
         a: (dark ? 0.06 : 0.14) + Math.random() * (dark ? 0.05 : 0.08),
         age: Math.random() * 300, life: 200 + Math.random() * 320
       };
     }
     return {
       onTheme: function () { dark = isDark(); makeSprite(); },
-      seed: function () { parts = []; var n = Math.min(Math.floor((W * H) / 26000), 120); for (var i = 0; i < n; i++) parts.push(spawn()); },
+      seed: function () { parts = []; var n = Math.max(45, Math.min(Math.floor((W * H) / 15000), 130)); for (var i = 0; i < n; i++) parts.push(spawn()); },
       frame: function () {
         var push = scrollVel * 0.01; if (push > 1.6) push = 1.6; else if (push < -1.6) push = -1.6;
         ctx.clearRect(0, 0, W, H);

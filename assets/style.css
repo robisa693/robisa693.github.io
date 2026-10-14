@@ -65,6 +65,14 @@ html {
           mask-image: linear-gradient(to right, #000 0%, rgba(0,0,0,0.22) 17%, rgba(0,0,0,0.22) 83%, #000 100%);
 }
 .bg-fx[hidden] { display: none; }   /* only the active layer renders */
+/* On phones there are no side gutters, so soften the centre fade
+   or the effect nearly vanishes. */
+@media (max-width: 700px) {
+  .bg-fx {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0.6) 78%, #000 100%);
+            mask-image: linear-gradient(to right, #000 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0.6) 78%, #000 100%);
+  }
+}
 /* Frosted-glass screen over the dots effect */
 #frost {
   mask-image: none; -webkit-mask-image: none;
