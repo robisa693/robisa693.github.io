@@ -1,13 +1,13 @@
-// ---- Wind / air background ----------------------------------------------
-// Flowing streamlines drifting sideways like air currents.
-// Dark strokes in light mode, light strokes in dark mode. Self-contained.
+// ---- Gas / fluid background ---------------------------------------------
+// Soft translucent clouds drifting along a flow field, blending into gas.
+// Dark smoke in light mode, luminous gas in dark mode. Scroll stirs it.
 (function () {
   var canvas = document.getElementById('wind');
   if (!canvas) return;
 
   var reduce = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return; // respect reduced-motion: leave the page calm
+  if (reduce) return;
 
   var ctx = canvas.getContext('2d', { alpha: true });
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -15,9 +15,12 @@
   var particles = [];
   var t = 0;
   var raf = null;
-  var color = [25, 27, 30]; // updated by theme
+  var color = [22, 24, 28];
+  var mode = 'source-over';   // blending; 'lighter' in dark mode
+  var sprite = null;          // pre-rendered soft blob
+  var scrollVel = 0;
 
-  // --- theme-aware stroke colour ---
+  // --- theme-aware colour, blend mode, and blob sprite ---
   function isDark() {
     var theme = document.documentElement.getAttribute('data-theme');
     if (theme === 'dark') return true;
@@ -25,9 +28,23 @@
     return window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
-  function updateColor() {
-    // light mode -> dark wind (ink) ; dark mode -> light wind
-    color = isDark() ? [232, 234, 237] : [22, 24, 28];
+  function makeSprite() {
+    var R = 128;
+    var s = document.createElement('canvas');
+    s.width = s.height = R * 2;
+    var g = s.getContext('2d');
+    var grad = g.createRadialGradient(R, R, 0, R, R, R);
+    grad.addColorStop(0, 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',1)');
+    grad.addColorStop(1, 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',0)');
+    g.fillStyle = grad;
+    g.fillRect(0, 0, R * 2, R * 2);
+    sprite = s;
+  }
+  function updateTheme() {
+    var dark = isDark();
+    color = dark ? [150, 210, 230] : [30, 34, 40]; // light gas vs dark smoke
+    mode = dark ? 'lighter' : 'source-over';
+    makeSprite();
   }
 
   // --- sizing ---
@@ -41,78 +58,63 @@
   }
 
   function seed() {
-    var count = Math.min(Math.floor((w * h) / 20000), 170);
+    var count = Math.min(Math.floor((w * h) / 26000), 120);
     particles = [];
     for (var i = 0; i < count; i++) particles.push(spawn());
   }
 
-  // always respawn somewhere across the whole canvas so coverage stays even
   function spawn() {
     return {
       x: Math.random() * w,
       y: Math.random() * h,
-      age: 0,
-      life: 140 + Math.random() * 260
+      r: 55 + Math.random() * 95,
+      a: 0.05 + Math.random() * 0.05,
+      age: Math.random() * 300,
+      life: 200 + Math.random() * 320
     };
   }
 
-  // smooth, cheap flow field — biased to a gentle rightward drift
+  // smooth, cheap flow field — gentle rightward drift
   function field(x, y) {
     return (
-      Math.sin(x * 0.0016 + t * 0.6) +
-      Math.sin(y * 0.0021 - t * 0.4) +
-      Math.sin((x + y) * 0.0010 + t * 0.3)
+      Math.sin(x * 0.0015 + t * 0.6) +
+      Math.sin(y * 0.0020 - t * 0.4) +
+      Math.sin((x + y) * 0.0009 + t * 0.3)
     ) * 0.6;
   }
 
-  var STEPS = 16;    // length of each streak (segments)
-  var SEG = 4;       // px per segment
-  var DRIFT = 0.55;  // how fast streaks travel (halved)
-  var scrollVel = 0; // scroll-driven push, decays each frame
-
   function frame() {
-    t += 0.0016;
+    t += 0.0015;
 
-    // scroll gives the wind a vertical push that eases back to rest
     var push = scrollVel * 0.01;
     if (push > 1.6) push = 1.6; else if (push < -1.6) push = -1.6;
 
-    // clear fully every frame — no residue, no clutter
     ctx.clearRect(0, 0, w, h);
-    ctx.lineCap = 'round';
-    var c = color;
+    ctx.globalCompositeOperation = mode;
 
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
+      var a = field(p.x, p.y);
 
-      // trace a short streak backward along the flow, fading toward the tail
-      var sx = p.x, sy = p.y;
-      for (var k = 0; k < STEPS; k++) {
-        var a = field(sx, sy);
-        var nx = sx - (Math.cos(a) * 0.6 + 0.95) * SEG;
-        var ny = sy - (Math.sin(a) * 0.9 + push) * SEG;
-        var fade = 1 - k / STEPS;
-        ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (0.34 * fade) + ')';
-        ctx.lineWidth = 1.1 * fade + 0.25;
-        ctx.beginPath();
-        ctx.moveTo(sx, sy);
-        ctx.lineTo(nx, ny);
-        ctx.stroke();
-        sx = nx; sy = ny;
-      }
-
-      // advance the streak head along the flow (rightward drift + scroll)
-      var a0 = field(p.x, p.y);
-      p.x += (Math.cos(a0) * 0.6 + 0.95) * DRIFT;
-      p.y += (Math.sin(a0) * 0.9 + push) * DRIFT;
+      p.x += (Math.cos(a) * 0.6 + 0.45) * 0.6;
+      p.y += (Math.sin(a) * 0.8 + push) * 0.6;
       p.age++;
 
-      if (p.x > w + 90 || p.y < -90 || p.y > h + 90 || p.age > p.life) {
+      // fade each cloud in and out across its life (no popping)
+      var k = p.age / p.life;
+      var env = Math.sin(Math.PI * Math.max(0, Math.min(1, k)));
+      ctx.globalAlpha = p.a * env;
+      ctx.drawImage(sprite, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+
+      if (p.x > w + p.r || p.y < -p.r || p.y > h + p.r || p.age > p.life) {
         particles[i] = spawn();
+        particles[i].x = Math.random() * w; // reappear anywhere
       }
     }
 
-    scrollVel *= 0.90; // ease back to calm
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+    scrollVel *= 0.90;
     raf = requestAnimationFrame(frame);
   }
 
@@ -120,7 +122,7 @@
   function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
   // --- wiring ---
-  updateColor();
+  updateTheme();
   resize();
   start();
 
@@ -130,7 +132,6 @@
     rt = setTimeout(resize, 200);
   });
 
-  // scroll stirs the wind
   var lastScrollY = window.pageYOffset || 0;
   window.addEventListener('scroll', function () {
     var y = window.pageYOffset || 0;
@@ -144,13 +145,12 @@
     if (document.hidden) stop(); else start();
   });
 
-  // react to theme toggle + OS theme change
-  new MutationObserver(updateColor).observe(document.documentElement, {
+  new MutationObserver(updateTheme).observe(document.documentElement, {
     attributes: true, attributeFilter: ['data-theme']
   });
   if (window.matchMedia) {
     var mq = window.matchMedia('(prefers-color-scheme: dark)');
     (mq.addEventListener ? mq.addEventListener.bind(mq, 'change')
-      : mq.addListener.bind(mq))(updateColor);
+      : mq.addListener.bind(mq))(updateTheme);
   }
 })();
