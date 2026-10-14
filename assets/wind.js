@@ -41,7 +41,7 @@
   }
 
   function seed() {
-    var count = Math.min(Math.floor((w * h) / 12000), 300);
+    var count = Math.min(Math.floor((w * h) / 20000), 170);
     particles = [];
     for (var i = 0; i < count; i++) particles.push(spawn());
   }
@@ -65,36 +65,44 @@
     ) * 0.6;
   }
 
+  var STEPS = 16;   // length of each streak (segments)
+  var SEG = 4;      // px per segment
+  var DRIFT = 1.1;  // how fast streaks travel
+
   function frame() {
     t += 0.0016;
 
-    // fade previous strokes toward transparent (leaves soft trails)
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.fillStyle = 'rgba(0,0,0,0.045)';
-    ctx.fillRect(0, 0, w, h);
-
-    // draw
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.lineWidth = 1.1;
+    // clear fully every frame — no residue, no clutter
+    ctx.clearRect(0, 0, w, h);
     ctx.lineCap = 'round';
-    ctx.strokeStyle = 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',0.5)';
+    var c = color;
 
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
-      var a = field(p.x, p.y);
-      var vx = Math.cos(a) * 0.6 + 0.95; // base wind to the right
-      var vy = Math.sin(a) * 0.9;
-      var nx = p.x + vx * 1.3;
-      var ny = p.y + vy * 1.3;
 
-      ctx.beginPath();
-      ctx.moveTo(p.x, p.y);
-      ctx.lineTo(nx, ny);
-      ctx.stroke();
+      // trace a short streak backward along the flow, fading toward the tail
+      var sx = p.x, sy = p.y;
+      for (var k = 0; k < STEPS; k++) {
+        var a = field(sx, sy);
+        var nx = sx - (Math.cos(a) * 0.6 + 0.95) * SEG;
+        var ny = sy - Math.sin(a) * 0.9 * SEG;
+        var fade = 1 - k / STEPS;
+        ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (0.42 * fade) + ')';
+        ctx.lineWidth = 1.1 * fade + 0.25;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(nx, ny);
+        ctx.stroke();
+        sx = nx; sy = ny;
+      }
 
-      p.x = nx; p.y = ny; p.age++;
+      // advance the streak head along the flow (rightward drift)
+      var a0 = field(p.x, p.y);
+      p.x += (Math.cos(a0) * 0.6 + 0.95) * DRIFT;
+      p.y += Math.sin(a0) * 0.9 * DRIFT;
+      p.age++;
 
-      if (p.x > w + 20 || p.y < -20 || p.y > h + 20 || p.age > p.life) {
+      if (p.x > w + 90 || p.y < -90 || p.y > h + 90 || p.age > p.life) {
         particles[i] = spawn();
       }
     }
