@@ -28,7 +28,10 @@
     ) * 0.6;
   }
   function size2d() {
-    W = window.innerWidth; H = window.innerHeight;
+    // measure the element (stable 100lvh), not window.innerHeight which
+    // jitters as the mobile URL bar shows/hides
+    W = c2d.clientWidth || window.innerWidth;
+    H = c2d.clientHeight || window.innerHeight;
     c2d.width = Math.floor(W * dpr); c2d.height = Math.floor(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
@@ -128,7 +131,7 @@
       'm*=1.79284291400159-0.85373472095314*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;',
       'return 130.0*dot(m,g);}',
       'float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;}return v;}',
-      'void main(){float aspect=uRes.x/uRes.y;vec2 p=vec2(vUv.x*aspect,vUv.y)*2.2;float tt=uTime*0.03;',
+      'void main(){vec2 p=(vUv*uRes)/uRes.x*2.2;float tt=uTime*0.03;',
       'vec2 q=vec2(fbm(p+tt),fbm(p+vec2(5.2,1.3)-tt));',
       'vec2 r=vec2(fbm(p+1.6*q+vec2(1.7,9.2)+tt*0.7),fbm(p+1.6*q+vec2(8.3,2.8)-tt*0.7));',
       'float f=fbm(p+2.0*r);float v=clamp(f*0.5+0.5,0.0,1.0);v=smoothstep(0.32,0.98,v);',
@@ -153,8 +156,8 @@
       isGL: true,
       onTheme: function () { gl.useProgram(prog); gl.uniform1f(uDark, isDark() ? 1.0 : 0.0); },
       size: function () {
-        var w = Math.max(1, Math.floor(window.innerWidth * SCALE));
-        var h = Math.max(1, Math.floor(window.innerHeight * SCALE));
+        var w = Math.max(1, Math.floor((cgl.clientWidth || window.innerWidth) * SCALE));
+        var h = Math.max(1, Math.floor((cgl.clientHeight || window.innerHeight) * SCALE));
         cgl.width = w; cgl.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(uRes, w, h);
       },
       frame: function () {
