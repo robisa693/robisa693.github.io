@@ -41,17 +41,18 @@
   }
 
   function seed() {
-    var count = Math.min(Math.floor((w * h) / 6500), 520);
+    var count = Math.min(Math.floor((w * h) / 12000), 300);
     particles = [];
-    for (var i = 0; i < count; i++) particles.push(spawn(true));
+    for (var i = 0; i < count; i++) particles.push(spawn());
   }
 
-  function spawn(anywhere) {
+  // always respawn somewhere across the whole canvas so coverage stays even
+  function spawn() {
     return {
-      x: anywhere ? Math.random() * w : -20,
+      x: Math.random() * w,
       y: Math.random() * h,
       age: 0,
-      life: 60 + Math.random() * 180
+      life: 140 + Math.random() * 260
     };
   }
 
@@ -94,7 +95,7 @@
       p.x = nx; p.y = ny; p.age++;
 
       if (p.x > w + 20 || p.y < -20 || p.y > h + 20 || p.age > p.life) {
-        particles[i] = spawn(false);
+        particles[i] = spawn();
       }
     }
 
