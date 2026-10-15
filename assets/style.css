@@ -232,12 +232,37 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 .term-body {
   padding: 20px; margin: 0; font-family: var(--font-mono);
   font-size: 0.82rem; line-height: 1.95; color: #c3c8d0; white-space: pre-wrap;
+  max-height: 360px; overflow: auto;
 }
 .c-prompt { color: #5fd3c3; } .c-cmd { color: #e8eaed; }
 .c-ok { color: #5cc98a; } .c-dim { color: #7d828c; }
 .c-hi { color: #5cc98a; font-weight: 500; }
 .blink { animation: blink 1.1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+
+/* Draggable terminal + tabs */
+.hero-terminal { position: relative; z-index: 3; }
+.hero-terminal.is-dragging { z-index: 50; transition: none; box-shadow: 0 34px 80px -20px rgba(0, 0, 0, 0.75); }
+.term-bar { cursor: move; touch-action: none; user-select: none; -webkit-user-select: none; }
+.term-tabs { display: flex; gap: 4px; margin-left: 10px; }
+.term-tab {
+  font-family: var(--font-mono); font-size: 0.72rem; color: #7d828c;
+  background: transparent; border: none; padding: 3px 9px; border-radius: 6px;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.term-tab:hover { color: #c3c8d0; }
+.term-tab.is-active { background: var(--t-bg); color: #e8eaed; }
+
+/* Interactive bash */
+.term-screen { cursor: text; }
+.term-out > div { white-space: pre-wrap; word-break: break-word; }
+.term-prompt-line { display: flex; align-items: baseline; }
+.prompt-ps1 { white-space: nowrap; }
+.c-path { color: #6ea8fe; }
+.term-input {
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; padding: 0;
+  font: inherit; color: #e8eaed; caret-color: #5fd3c3;
+}
 
 /* ===========================================================
    Sections

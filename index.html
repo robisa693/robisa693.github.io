@@ -140,16 +140,45 @@
         <div><dt>Focus</dt><dd>Platform Engineering &amp; DevOps</dd></div>
       </dl>
     </div>
-    <div class="hero-terminal reveal" aria-hidden="true">
-      <div class="term-bar"><span></span><span></span><span></span><em>roberto@platform: ~</em></div>
-      <pre class="term-body"><span class="c-prompt">$</span> <span class="c-cmd">terraform apply -auto-approve</span>
-<span class="c-ok">✔</span> vault_secrets      <span class="c-dim">provisioned</span>
-<span class="c-ok">✔</span> packer_image       <span class="c-dim">built</span>
-<span class="c-ok">✔</span> ansible_playbook   <span class="c-dim">converged</span>
-<span class="c-ok">✔</span> ci_cd_pipeline     <span class="c-dim">deployed</span>
+    <div class="hero-terminal reveal" id="heroTerm">
+      <div class="term-bar" id="termBar">
+        <span></span><span></span><span></span>
+        <div class="term-tabs" role="tablist" aria-label="Terminal tabs">
+          <button type="button" class="term-tab is-active" data-tab="t1" aria-selected="true">bash</button>
+          <button type="button" class="term-tab" data-tab="t2" aria-selected="false">deathstar.yml</button>
+        </div>
+      </div>
+      <div class="term-body term-screen" data-panel="t1" id="termScreen"><div class="term-out" id="termOut"><div><span class="c-prompt">$</span> <span class="c-cmd">terraform apply -auto-approve</span></div><div><span class="c-ok">✔</span> vault_secrets      <span class="c-dim">provisioned</span></div><div><span class="c-ok">✔</span> packer_image       <span class="c-dim">built</span></div><div><span class="c-ok">✔</span> ansible_playbook   <span class="c-dim">converged</span></div><div><span class="c-ok">✔</span> ci_cd_pipeline     <span class="c-dim">deployed</span></div><div>&nbsp;</div><div><span class="c-hi">Apply complete!</span> <span class="c-dim">4 added, 0 changed, 0 destroyed.</span></div><div class="c-dim">tip: type 'help' and press Enter &#129370;</div></div><div class="term-prompt-line"><span class="prompt-ps1"><span class="c-prompt">roberto@ri</span><span class="c-dim">:</span><span class="c-path" id="termPath">~</span><span class="c-dim">$</span></span>&nbsp;<input id="termInput" class="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="terminal input" /></div></div>
+      <pre class="term-body term-yaml" data-panel="t2" hidden><span class="c-dim"># deathstar.yml — Imperial Infrastructure as Code</span>
+<span class="c-dim"># ⚠ do NOT apply: thermal_exhaust_port still open (see PR #1977)</span>
+<span class="c-dim">-</span> <span class="c-prompt">name:</span> <span class="c-cmd">Provision DS-1 Orbital Battle Station</span>
+  <span class="c-prompt">hosts:</span> <span class="c-cmd">endor_orbit</span>
+  <span class="c-prompt">become:</span> <span class="c-cmd">true</span>                 <span class="c-dim"># requires Sith privileges</span>
+  <span class="c-prompt">vars:</span>
+    <span class="c-prompt">diameter_km:</span> <span class="c-cmd">160</span>
+    <span class="c-prompt">reactor:</span> <span class="c-cmd">hypermatter</span>
+    <span class="c-prompt">superlaser:</span> <span class="c-cmd">enabled</span>
+  <span class="c-prompt">tasks:</span>
+    <span class="c-dim">-</span> <span class="c-prompt">name:</span> <span class="c-cmd">Install superlaser</span>
+      <span class="c-prompt">ansible.builtin.package:</span>
+        <span class="c-prompt">name:</span> <span class="c-cmd">superlaser</span>
+        <span class="c-prompt">state:</span> <span class="c-cmd">present</span>         <span class="c-dim"># "That's no moon."</span>
 
-<span class="c-hi">Apply complete!</span> <span class="c-dim">4 added, 0 changed, 0 destroyed.</span>
-<span class="c-prompt">$</span> <span class="c-cmd blink">_</span></pre>
+    <span class="c-dim">-</span> <span class="c-prompt">name:</span> <span class="c-cmd">Configure thermal exhaust port</span>
+      <span class="c-prompt">ansible.builtin.firewall:</span>
+        <span class="c-prompt">port:</span> <span class="c-ok">"2m"</span>              <span class="c-dim"># two meters wide</span>
+        <span class="c-prompt">proto:</span> <span class="c-cmd">proton_torpedo</span>
+        <span class="c-prompt">state:</span> <span class="c-cmd">open</span>            <span class="c-dim"># TODO: close before launch !!</span>
+
+    <span class="c-dim">-</span> <span class="c-prompt">name:</span> <span class="c-cmd">Deploy stormtroopers</span>
+      <span class="c-prompt">ansible.builtin.copy:</span>
+        <span class="c-prompt">replicas:</span> <span class="c-cmd">1000000</span>
+        <span class="c-prompt">accuracy:</span> <span class="c-cmd">0.0</span>           <span class="c-dim"># working as intended</span>
+
+    <span class="c-dim">-</span> <span class="c-prompt">name:</span> <span class="c-cmd">Enable tractor beam</span>
+      <span class="c-prompt">community.empire.tractor_beam:</span>
+        <span class="c-prompt">target:</span> <span class="c-cmd">millennium_falcon</span>
+        <span class="c-prompt">state:</span> <span class="c-ok">"it's a trap"</span></pre>
     </div>
   </section>
 
